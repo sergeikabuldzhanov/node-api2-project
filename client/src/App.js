@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import PostCard from "./components/PostCard";
 import './App.css';
 
 function App() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(`http://localhost:5000/api/posts`)
+      .then(response => {
+        setPosts(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    setLoading(false);
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
     </div>
   );
 }
