@@ -12,7 +12,7 @@ server.use('/api/posts', postRouter)
 
 
 
-server.listen(5000, ()=>{
+server.listen(8000, ()=>{
     console.log(`Server listening on port 5000`);
     
 })
